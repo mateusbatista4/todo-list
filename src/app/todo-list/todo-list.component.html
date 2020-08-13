@@ -5,33 +5,28 @@
         <div class="todolist not-done">
           <h1>Todo List</h1>
           <form class="form-inline">
-            <input type="text" class="form-control add-todo"  name="item" placeholder="Add Item...">
-            <button id="checkAll" class="btn btn-success ml-2">Add</button>
+            <input type="text" class="form-control add-todo"
+            [(ngModel)]="itemToAdd" name="item" placeholder="Add Item...">
+            <button id="checkAll" class="btn btn-success ml-2"  (click)="addToList()">Add</button>
+            
           </form>
           <hr>
-          
           <ul id="sortable" class="list-unstyled">
-            <li class="ui-state-default">
+            <li class="ui-state-default" *ngFor="let item of todoList; let i = index">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="" />Study Javascript</label>
+                  <input type="checkbox" value="" (click)="addToDoneList(i)" />{{item}}</label>
               </div>
             </li>
-            <li class="ui-state-default">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" />Study Angular</label>
-              </div>
-            </li>
+            
           </ul>
           <h2>Items Done</h2>
           <ul id="sortable" class="list-unstyled">
-            <li class="ui-state-default">
+            <li class="ui-state-default" *ngFor="let done of doneList;let j = index">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" checked /><span style="text-decoration:line-through;">
-                    Read Café
-                    Recursivo
+                  <input type="checkbox" checked (click)="undoneList(j)" /><span style="text-decoration:line-through;">
+                    {{done}}
                   </span>
                 </label>
               </div>

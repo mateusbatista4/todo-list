@@ -7,7 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 
+  todoList: string[] = [];
+  doneList: string[] = [];
+  itemToAdd: string ;
+
   constructor() { }
+
+  addToList(){
+   if(this.itemToAdd != null && this.itemToAdd != ""){
+     this.todoList.push(this.itemToAdd);
+   }
+  }
+  undoneList(i:number){
+    this.todoList.push(this.doneList[i]);
+    this.doneList.splice(i, 1);
+  }
+  addToDoneList(i:number){
+    this.doneList.push(this.todoList[i]);
+    this.todoList.splice(i, 1);
+  }
 
   ngOnInit(): void {
   }
